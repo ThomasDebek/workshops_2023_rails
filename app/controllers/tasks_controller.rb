@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
 
   def index
-    @tasks = Task.all.order('created_at DESC')
+    @tasks = Task.upcoming_deadline
   end
 
   def show
@@ -24,7 +24,7 @@ class TasksController < ApplicationController
 
   def update
     if params[:task].present? && @task.update(task_params)
-      redirect_to task_url(@task), notice: "Task was successfully updated"
+      redirect_to root_path, notice: "Task was successfully updated"
     else
       render :edit
     end
@@ -42,6 +42,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description)
+    params.require(:task).permit(:title, :description, :deadline)
   end
 end

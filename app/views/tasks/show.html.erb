@@ -1,16 +1,42 @@
-<h1>Show</h1>
+<section class="vh-100" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card rounded-3">
+          <div class="card-body p-4">
 
+            <%= content_tag :div, class: "alert alert-info", id: "notice" do -%>
+              <%= notice %>
+            <% end if notice.present? -%>
 
-  <p>
-    <strong>Title:</strong>
-    <%= @task.title %>
-  </p>
+            <% if @task.errors.any? %>
+              <% @task.errors.full_messages.each do |message| %>
+                <%= content_tag :div, class: "alert alert-danger", role: 'alert' do -%>
+                  <%= message %>
+                <% end -%>
+              <% end %>
+            <% end %>
 
-  <p>
-    <strong>Description:</strong>
-    <%= @task.description %>
-  </p>
+            <h4 class="text-center my-3 pb-3">To Do App</h4>
+            <div class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
+              <%= button_to "Tasks list", tasks_path, method: :get, class: "btn btn-primary" %>
+            </div>
 
-<p>
-  <%= link_to 'Back', root_path %>
-</p>
+            <p>
+              <strong>Title:</strong>
+              <%= @task.title %>
+            </p>
+            <p>
+              <strong>Description:</strong>
+              <%= @task.description %>
+            </p>
+            <p>
+              <strong>Deadline:</strong>
+              <%= @task.deadline %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
