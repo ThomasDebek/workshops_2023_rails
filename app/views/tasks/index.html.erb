@@ -1,7 +1,7 @@
 <section class="vh-100" style="background-color: #eee;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col col-lg-9 col-xl-7">
+      <div class="col col-lg-9 col-xl-12">
         <div class="card rounded-3">
           <div class="card-body p-4">
 
@@ -17,22 +17,26 @@
             <table class="table mb-4">
               <thead>
                 <tr>
-                  <th scope="col">No.</th>
-                  <th scope="col">Todo item</th>
+                  <th scope="col">#</th>
+                  <th scope="col">Title</th>
                   <th scope="col">Description</th>
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
+              <% counter = 1 %>
                 <% @tasks.each do |task| %>
                   <tr>
-                    <th scope="row">[Here should be No.]</th>
+                    <th scope="row"><%= counter %></th>
                     <td><%= task.title %></td>
                     <td><%= task.description %></td>
                     <td>
-                      <%= button_to "Delete task", task, method: :delete, class: "btn btn-danger" %>
+                      <%= link_to "Show", task, class: "btn btn-primary" %>
+                      <%= link_to 'Edit', edit_task_path(task), class: "btn btn-primary" %>
+                      <%= link_to "Delete", task, method: :delete, class: "btn btn-danger" %>
                     </td>
                   </tr>
+                 <% counter += 1 %>
                 <% end %>
               </tbody>
             </table>

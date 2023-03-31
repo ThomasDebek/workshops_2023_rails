@@ -23,7 +23,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    if @task.update(task_params)
+    if params[:task].present? && @task.update(task_params)
       redirect_to task_url(@task), notice: "Task was successfully updated"
     else
       render :edit

@@ -1,0 +1,23 @@
+<h1>Edit task</h1>
+
+
+
+<%= form_with(model: @task) do |form| %>
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<p>
+  <%= link_to 'Back', root_path %>
+</p>
