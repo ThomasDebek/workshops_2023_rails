@@ -1,12 +1,18 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:destroy]
-
+  before_action :set_task, only: %i[ show edit update destroy ]
+  
   def index
     @tasks = Task.all
   end
 
+  def show
+  end
+
   def new
     @task = Task.new
+  end
+
+  def edit
   end
 
   def create
@@ -16,6 +22,14 @@ class TasksController < ApplicationController
       redirect_to tasks_url, notice: 'Task successfully created.'
     else
       render :new
+    end
+  end
+
+  def update
+    if @task.update(task_params)
+      redirect_to task_url(@task), notice: 'Task successfully updated'
+    else
+      render :edit
     end
   end
 
