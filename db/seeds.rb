@@ -7,14 +7,14 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 p "Delete and generating new Task"
-
-
+Task.destroy_all
 
 10.times do
+  realizations = Realization.all
   p = Task.create(
     title: Faker::Lorem.sentence,
     description: Faker::Lorem.paragraph,
-    deadline: Faker::Time.between(from: DateTime.now, to: DateTime.now + 30)
+    deadline: Faker::Time.between(from: DateTime.now, to: DateTime.now + 30),
   )
   puts "generating - product - #{p.title}"
 end

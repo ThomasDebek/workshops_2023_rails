@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[ show edit update destroy mark_as_done ]
 
   def index
     @tasks = Task.upcoming_deadline
@@ -33,6 +33,11 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     redirect_to tasks_url, notice: 'Task successfully destroyed.'
+  end
+
+  def mark_as_done
+    @task.realizations.create(done_at: Time.zone.now)
+    redirect_back fallback_location: root_path, notice: 'Task Finished - well  done.'
   end
 
   private

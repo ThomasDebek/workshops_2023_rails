@@ -34,6 +34,12 @@
               <strong>Deadline:</strong>
               <%= @task.deadline.strftime('%Y-%m-%d') %>
             </p>
+
+            <p>
+              <strong>Finish:</strong>
+              <%= @task.realizations.last&.done_at&.strftime('%Y-%m-%d')  %>
+            </p>
+
           </div>
         </div>
       </div>
