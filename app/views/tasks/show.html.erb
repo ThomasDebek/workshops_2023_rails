@@ -22,26 +22,23 @@
               <%= button_to "Tasks list", tasks_path, method: :get, class: "btn btn-primary" %>
             </div>
 
-            <%= form_with(model: @task) do |form| %>
-              <div>
-                <%= form.label :title, style: "display: block" %>
-                <%= form.text_field :title %>
-              </div>
+            <p>
+              <strong>Title:</strong>
+              <%= @task.title %>
+            </p>
+            <p>
+              <strong>Description:</strong>
+              <%= @task.description %>
+            </p>
+            <p>
+              <strong>Deadline:</strong>
+              <%= @task.deadline.strftime('%Y-%m-%d') %>
+            </p>
 
-              <div>
-                <%= form.label :description, style: "display: block" %>
-                <%= form.text_area :description %>
-              </div>
-
-              <div>
-                <%= form.label :deadline, style: "display: block" %>
-                <%= form.date_select :deadline, { order: [:year, :month, :day] } %>
-              </div>
-
-              <div>
-                <%= form.submit %>
-              </div>
-            <% end %>
+            <p>
+              <strong>Finish:</strong>
+              <%= @task.realizations.last&.done_at&.strftime('%Y-%m-%d')  %>
+            </p>
 
           </div>
         </div>

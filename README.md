@@ -54,11 +54,13 @@ Pamiętaj proszę, że nie oczekujemy setek linii kodu ;) <br>
 * nie można zapisać nowego taska
 * przez to - "nie do końca" działa test kontrolera
 * spróbuj znaleźć źródło błędu i poprawić. Podpowiem, że kodu do napisania nie ma dużo :)
+
 2. Dodanie czegoś brakującego - **"numer" (nie ID) taska**
 * Na liście tasków jest kolumna `No.` w której powinien pojawić się numer kolejności taska (1, 2, 3...)
 * dla wszystkich teraz - jest na sztywno `[Here should be No.]`
 * dodaj obsługę dynamicznego wyświetlania tych numerów, **nie chodzi o ID tasków!**
-2. Dodanie czegoś nowego - **termin realizacji zadania**
+
+3. Dodanie czegoś nowego - **termin realizacji zadania**
 * Dodajmy możliwość określania terminu realizacji zadania
 * w tym celu - nowa kolumna w tabeli *tasks*
 * nowe pole w formularzu

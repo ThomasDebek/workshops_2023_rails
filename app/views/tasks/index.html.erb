@@ -1,7 +1,7 @@
 <section class="vh-100" style="background-color: #eee;">
-  <div class="container py-5 h-100">
+  <div class="container py- h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col col-lg-9 col-xl-7">
+      <div class="col col-lg-9 col-xl-12">
         <div class="card rounded-3">
           <div class="card-body p-4">
 
@@ -14,25 +14,33 @@
               <%= button_to "New task", new_task_path, method: :get, class: "btn btn-primary" %>
             </div>
 
-            <table class="table mb-4">
+            <table class="table mb-6">
               <thead>
                 <tr>
-                  <th scope="col">No.</th>
-                  <th scope="col">Todo item</th>
+                  <th scope="col">#</th>
+                  <th scope="col">Title</th>
                   <th scope="col">Description</th>
-                  <th scope="col">Actions</th>
+                  <th scope="col">Deadline</th>
+                  <th scope="col">Finished</th>
                 </tr>
               </thead>
               <tbody>
+              <% counter = 1 %>
                 <% @tasks.each do |task| %>
                   <tr>
-                    <th scope="row">[Here should be No.]</th>
+                    <th scope="row"><%= counter %></th>
                     <td><%= task.title %></td>
                     <td><%= task.description %></td>
-                    <td>
-                      <%= button_to "Delete task", task, method: :delete, class: "btn btn-danger" %>
+                    <td><%= task.deadline.strftime('%Y-%m-%d')  %></td>
+                    <td><%= task.realizations.last&.done_at&.strftime('%Y-%m-%d') %></td>
+                    <td class="actions">
+                       <td><%= link_to 'Finish', mark_as_done_task_path(task),class:  "btn btn-info" %>  </td>
+                       <td><%= link_to "Show", task, class: "btn btn-success" %></td>
+                       <td><%= link_to 'Edit', edit_task_path(task), class: "btn btn-primary" %></td>
+                       <td><%= button_to "Delete", task, method: :delete, class: "btn btn-danger" %></td>
                     </td>
                   </tr>
+                 <% counter += 1 %>
                 <% end %>
               </tbody>
             </table>

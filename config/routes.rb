@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
-  root to: "tasks#index"
-  resources :tasks, only: [:index, :new, :create, :destroy]
+
+  root "tasks#index"
+  resources :tasks do
+    resources :realizations
+    member do
+      get 'mark_as_done'
+    end
+
+  end
 end
