@@ -13,10 +13,10 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = Task.create(task_params)
 
     if @task.save
-      redirect_to tasks_url, notice: 'Task successfully created.'
+      redirect_to tasks_url(@task), notice: 'Task successfully created.'
     else
       render :new
     end

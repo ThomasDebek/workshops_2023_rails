@@ -35,7 +35,7 @@
 
               <div>
                 <%= form.label :deadline, style: "display: block" %>
-                <%= form.date_select :deadline, { order: [:year, :month, :day] } %>
+                <%= form.date_select :deadline, { order: [:year, :month, :day], start_year: Date.today.year, end_year: Date.today.year + 1 } %>
               </div>
 
               <div>
