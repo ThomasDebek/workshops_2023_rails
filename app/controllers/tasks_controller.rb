@@ -13,11 +13,13 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.create(task_params)
+    result = CreateTask.new(params).call
 
-    if @task.save
-      redirect_to tasks_url(@task), notice: 'Task successfully created.'
+
+    if result.success?
+      redirect_to tasks_url, notice: 'Task successfully created'
     else
+      flash.now[:alert] = result.failure
       render :new
     end
   end
