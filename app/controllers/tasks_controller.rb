@@ -13,26 +13,39 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    result = CreateTask.new(params).call
 
-    if @task.save
-      redirect_to tasks_url, notice: 'Task successfully created.'
+
+    if result.success?
+      redirect_to tasks_url, notice: 'Task successfully created'
     else
+      flash.now[:alert] = result.failure
       render :new
     end
   end
 
   def update
-    if params[:task].present? && @task.update(task_params)
-      redirect_to root_path, notice: "Task was successfully updated"
+
+    result = UpdateTask.new(@task, params).call
+
+    if result.success?
+      redirect_to root_path, notice: 'Task was successfully updated'
     else
+      flash.now[:alert] = result.failure
       render :edit
     end
   end
 
   def destroy
-    @task.destroy
-    redirect_to tasks_url, notice: 'Task successfully destroyed.'
+    result = DeleteTask.new(@task).call
+
+    if result.success?
+      redirect_to tasks_url, notice: 'Task successfully destroyed'
+    else
+      flash.now[:alert] = result.failure
+      render :edit
+    end
+
   end
 
   def mark_as_done
